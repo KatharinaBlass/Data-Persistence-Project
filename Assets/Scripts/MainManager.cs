@@ -61,6 +61,7 @@ public class MainManager : MonoBehaviour
                 BestScoretext.text = $"Best Score : {PersistenceGameManager.Instance.PlayerName} : {m_Points}";
                 PersistenceGameManager.Instance.BestPlayerName = PersistenceGameManager.Instance.PlayerName;
                 PersistenceGameManager.Instance.BestScore = m_Points;
+                PersistenceGameManager.Instance.SaveScore();
             }
             if (Input.GetKeyDown(KeyCode.Space))
             {

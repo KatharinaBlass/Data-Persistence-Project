@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.UI;
 
 
 #if UNITY_EDITOR
@@ -11,11 +12,13 @@ using UnityEditor;
 
 public class Menu : MonoBehaviour
 {
+    public Text BestScoretext;
     public TMP_InputField inputField;
     // Start is called before the first frame update
     void Start()
     {
-
+        if (PersistenceGameManager.Instance != null)
+            BestScoretext.text = $"Best Score : {PersistenceGameManager.Instance.BestPlayerName} : {PersistenceGameManager.Instance.BestScore}";
     }
 
     // Update is called once per frame
@@ -38,6 +41,7 @@ public class Menu : MonoBehaviour
 
     public void Exit()
     {
+        PersistenceGameManager.Instance.SaveScore();
 #if UNITY_EDITOR
         EditorApplication.ExitPlaymode();
 #else
