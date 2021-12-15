@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
+
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -9,6 +11,7 @@ using UnityEditor;
 
 public class Menu : MonoBehaviour
 {
+    public TMP_InputField inputField;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,8 +24,15 @@ public class Menu : MonoBehaviour
 
     }
 
+    public void NewNameEntered(string name)
+    {
+        PersistenceGameManager.Instance.PlayerName = name;
+    }
+
     public void StartNew()
     {
+        string name = inputField.GetComponent<TMP_InputField>().text;
+        NewNameEntered(name);
         SceneManager.LoadScene(1);
     }
 
